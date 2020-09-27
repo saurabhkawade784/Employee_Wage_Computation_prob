@@ -12,6 +12,8 @@ MAX_HRS_IN_MONTH=100;
 #Variable
 Emp_Worked_Hrs=0;
 Emp_Worked_Days=0;
+#dictionary declaration
+declare -A dailyWage;
 function get(){
 	#local Random_No_Check=$1
 	case $Random_No_Check in
@@ -28,11 +30,11 @@ do
         Random_No_Check=$(($RANDOM%2));
         Day_Hour=$( get $Random_No_Check )
 	Emp_Worked_Hrs=$(( $Emp_Worked_Hrs + $Day_Hour ));
-	dailyWage[$Emp_Worked_Days]=$(( $Day_Hour * $WAGE_PER_HOUR ))
+	dailyWage["Day "$Emp_Worked_Days]=$(( $Day_Hour * $WAGE_PER_HOUR ))
 done
 
 echo $Emp_Worked_Hrs;
-echo "Daily wage with total wage: " ${dailyWage[@]}
+echo "Day and Daily wage with total wage: " ${!dailyWage[@]}
 #calculate total salary of employee
 #One_Day_Salary_Of_Employee=$(( $WAGE_PER_HOUR * $Day_Hour ))
 #echo "Your one day salary is creadited to your account,Rupees" $One_Day_Salary_Of_Employee
