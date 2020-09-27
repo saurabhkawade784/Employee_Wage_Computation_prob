@@ -7,6 +7,7 @@ IS_EMPLOYEE_PRESENT=1;
 IS_EMPLOYEE_FULLTIME=1;
 IS_EMPLOYEE_PARTTIME=0;
 WAGE_PER_HOUR=20;
+WORKING_DAY_IN_MONTH=20;
 #Variable
 Random_No_Check=$(($RANDOM%3));
 case $Random_No_Check in
@@ -26,3 +27,5 @@ esac
 #calculate total salary of employee
 One_Day_Salary_Of_Employee=$(( $WAGE_PER_HOUR * $Day_Hour ))
 echo "Your one day salary is creadited to your account,Rupees" $One_Day_Salary_Of_Employee
+Month_Salary_Of_Employee=$(( $One_Day_Salary_Of_Employee * $WORKING_DAY_IN_MONTH ))
+echo "Your Monthly salary is creadited to your account,Rupees" $Month_Salary_Of_Employee
