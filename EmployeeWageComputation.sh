@@ -12,25 +12,25 @@ MAX_HRS_IN_MONTH=100;
 #Variable
 Emp_Worked_Hrs=0;
 Emp_Worked_Days=0;
+function get(){
+	#local Random_No_Check=$1
+	case $Random_No_Check in
+		$IS_EMPLOYEE_FULLTIME) Day_Hour=8; ;;
+		$IS_EMPLOYEE_PARTTIME) Day_Hour=4; ;;
+			    	    *) Day_Hour=0; ;;
+
+	esac
+	echo $Day_Hour
+	       }
 while [[ $Emp_Worked_Hrs -lt $MAX_HRS_IN_MONTH && $Emp_Worked_Days -lt $WORKING_DAY_IN_MONTH ]]
 do
 	((Emp_Worked_Days++))
-	Random_No_Check=$(($RANDOM%3));
-	case $Random_No_Check in
-		$IS_EMPLOYEE_FULLTIME)
-				     echo "This is Full Time Employee"
-				     Day_Hour=8;
-			     	     ;;
-		$IS_EMPLOYEE_PARTTIME) echo "This is Part Time Employee"
-				     Day_Hour=4;
-			    	      ;;
-		           	    *) echo "Employee is absent."
-		             	     Day_Hour=0;
-			              ;;
-
-	esac
+        Random_No_Check=$(($RANDOM%2));
+        Day_Hour=$( get $Random_No_Check )
 	Emp_Worked_Hrs=$(( $Emp_Worked_Hrs + $Day_Hour ));
 done
+
+echo $Emp_Worked_Hrs;
 
 #calculate total salary of employee
 #One_Day_Salary_Of_Employee=$(( $WAGE_PER_HOUR * $Day_Hour ))
