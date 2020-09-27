@@ -28,10 +28,11 @@ do
         Random_No_Check=$(($RANDOM%2));
         Day_Hour=$( get $Random_No_Check )
 	Emp_Worked_Hrs=$(( $Emp_Worked_Hrs + $Day_Hour ));
+	dailyWage[$Emp_Worked_Days]=$(( $Day_Hour * $WAGE_PER_HOUR ))
 done
 
 echo $Emp_Worked_Hrs;
-
+echo "Daily wage with total wage: " ${dailyWage[@]}
 #calculate total salary of employee
 #One_Day_Salary_Of_Employee=$(( $WAGE_PER_HOUR * $Day_Hour ))
 #echo "Your one day salary is creadited to your account,Rupees" $One_Day_Salary_Of_Employee
